@@ -1,5 +1,6 @@
 import React from 'react'
 import {View,Text,StyleSheet,ImageBackground,TextInput, Button} from 'react-native'
+import {Input} from 'react-native-elements'
 
 
 class AuthenticationScreen extends React.Component{
@@ -13,9 +14,10 @@ class AuthenticationScreen extends React.Component{
                 <View style={styles.top}>
                 </View>
                 <View style={styles.inputs}>
-                    <Text>Entrer vos informations pour continuer</Text>
-                    <TextInput style={styles.textInput} placeholder="entrez votre email" />
-                    <TextInput style={styles.textInput} placeholder="mot de passe" secureTextEntry={true} />
+                    <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer</Text>
+                    <Input style={styles.textInput} placeholder="entrez votre email" />
+                    {/* <Text style={{color:"#494c4f",fontSize:12,alignSelf:'flex-end'}}>Mot de passe oublier ?</Text> */}
+                    <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true}/>
                     <Button title="Login" color="#039b4f"/>
                 </View>   
                 <View style={styles.bottom}>
@@ -48,8 +50,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     textInput:{
-        borderColor:'#a1b6cc',
-        borderWidth:1
+
     }
 });
 export default AuthenticationScreen
