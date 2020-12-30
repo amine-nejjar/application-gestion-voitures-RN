@@ -1,13 +1,14 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-class HomeScreen extends React.Component{
+import {View, Text, StyleSheet, Button} from 'react-native'
+class CarDetailScreen extends React.Component{
     constructor(){
         super();
     }
     render(){
         return (
             <View style={styles.container}>
-            <Text>Home Screen</Text>            
+            <Text>Car details screen</Text>    
+            <Button title="go to reservation form" onPress={()=> this.props.navigation.navigate("ReservationFormScreen")}/>        
             </View>
             
           );
@@ -22,4 +23,4 @@ const styles = StyleSheet.create({
     },
 
 });
-export default HomeScreen
+export default CarDetailScreen

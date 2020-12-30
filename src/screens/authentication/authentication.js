@@ -12,7 +12,7 @@ class AuthenticationScreen extends React.Component{
         this.props.navigation.navigate("RegisterScreen")
     }
     logIn = ()=> {
-        this.props.navigation.navigate("HomeScreen")
+        this.props.navigation.navigate("HomeTabs")
     }
     render(){
         return (

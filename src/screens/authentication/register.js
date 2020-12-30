@@ -7,7 +7,7 @@ class RegisterScreen extends React.Component{
     this.props.navigation.navigate("AuthenticationScreen")
   }
   register = () => {
-    this.props.navigation.navigate("HomeScreen")
+    this.props.navigation.navigate("HomeTabs")
   }
   render(){
     return (
