@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     },
     bottom:{
         flex:2,
-        alignItems:'center'
+        alignItems:'center',
+        justifyContent:'center'
     },
     textInput:{
 
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     },
     titleStyle:{
         fontWeight:'bold',
-        fontSize:22,
+        fontSize:20,
         paddingLeft:6
     }
 });

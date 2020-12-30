@@ -4,8 +4,6 @@ class HomeScreen extends React.Component{
     constructor(){
         super();
     }
-  
-
     render(){
         return (
             <View style={styles.container}>
@@ -19,6 +17,7 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent:'center',
     backgroundColor:'#fff'
     },
 
