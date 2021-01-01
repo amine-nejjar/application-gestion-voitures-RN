@@ -2,7 +2,7 @@ import React from 'react'
 import {View,Text,StyleSheet,ImageBackground,Image,Button,TouchableOpacity} from 'react-native'
 import {Input} from 'react-native-elements'
 
-class RegisterScreen extends React.Component{
+class RegisterAgenceScreen extends React.Component{
   navigatetoLogin = () => {
     this.props.navigation.navigate("AuthenticationScreen")
   }
@@ -19,9 +19,10 @@ class RegisterScreen extends React.Component{
                     </View>
                 </ImageBackground>
             <View style={styles.inputs}>
-                <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer</Text>
-                <Input style={styles.textInput} placeholder="Nom complet" />
-                <Input style={styles.textInput} placeholder="entrez votre email" />
+                <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer(agence)</Text>
+                <Input style={styles.textInput} placeholder="Nom de l'agence" />
+                <Input style={styles.textInput} placeholder="Adresse de l'agence" />
+                <Input style={styles.textInput} placeholder="Email" />
                 <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true}/>
                 <Button title="Créer un compte" color="#039b4f" onPress={()=> this.register()}/>
             </View>   
@@ -81,4 +82,4 @@ class RegisterScreen extends React.Component{
           paddingLeft:6
       }
   });
-export default RegisterScreen
+export default RegisterAgenceScreen

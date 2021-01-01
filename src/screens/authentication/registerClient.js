@@ -1,7 +1,8 @@
 import React from 'react'
-import {View,Text,StyleSheet,ImageBackground,Image,TouchableOpacity} from 'react-native'
+import {View,Text,StyleSheet,ImageBackground,Image,Button,TouchableOpacity} from 'react-native'
+import {Input} from 'react-native-elements'
 
-class RegisterTypeScreen extends React.Component{
+class RegisterAgenceScreen extends React.Component{
   navigatetoLogin = () => {
     this.props.navigation.navigate("AuthenticationScreen")
   }
@@ -18,17 +19,11 @@ class RegisterTypeScreen extends React.Component{
                     </View>
                 </ImageBackground>
             <View style={styles.inputs}>
-                <TouchableOpacity style={styles.choiceCard} onPress={()=> this.props.navigation.navigate("RegisterClientScreen")}>
-                    <Image style={styles.imageStyle} resizeMode='contain' source={require('../../../assets/driver.png')}/>
-                    <Text style={styles.featureText}>Je suis</Text>
-                    <Text style={styles.userType}>Client</Text>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.choiceCard} onPress={()=> this.props.navigation.navigate("RegisterAgenceScreen")}>
-                    <Image style={styles.imageStyle} resizeMode='contain' source={require('../../../assets/car.png')}/>
-                    <Text style={styles.featureText}>Je suis</Text>
-                    <Text style={styles.userType}>Agence de location</Text>
-                </TouchableOpacity>
+                <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer(Client)</Text>
+                <Input style={styles.textInput} placeholder="Nom complet" />
+                <Input style={styles.textInput} placeholder="entrez votre email" />
+                <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true}/>
+                <Button title="Créer un compte" color="#039b4f" onPress={()=> this.register()}/>
             </View>   
             <View style={styles.bottom}>
                 <Text style={{color:"#c6c6c6"}}>Vous possedez déja un compte ?</Text>
@@ -54,33 +49,12 @@ class RegisterTypeScreen extends React.Component{
           justifyContent:'space-evenly',
           width:"90%",
           paddingVertical:"5%",
-          alignSelf:'center',
+          alignSelf:'center'
           
       },
-      choiceCard:{
-        justifyContent:'center',
-        alignItems:'center',
-        flex:1,
-        margin:15,
-        backgroundColor:'#fff',
-        elevation:5
-    },
-    imageStyle:{
-        width:"90%",
-        height:"45%"
-    },
-    userType:{
-        color:'#0a4f00',
-    },
-    featureText:{
-        fontSize:10,
-        textAlign:'center',
-        color:'#545556'
-    },
       bottom:{
           flex:1,
           alignItems:'center',
-          justifyContent:'center'
       },
       textInput:{
   
@@ -107,4 +81,4 @@ class RegisterTypeScreen extends React.Component{
           paddingLeft:6
       }
   });
-export default RegisterTypeScreen
+export default RegisterAgenceScreen
