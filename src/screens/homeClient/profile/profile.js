@@ -7,8 +7,8 @@ class ProfileScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
-            <Text>profile screen</Text>    
-            <Button title="go to profile update" onPress={()=> this.props.navigation.navigate("ProfileUpdate")}/>        
+               <Text>profile screen</Text>    
+               <Button title="go to profile update" onPress={()=> this.props.navigation.navigate("ProfileUpdate")}/>        
             </View>
             
           );

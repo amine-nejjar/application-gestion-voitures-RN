@@ -7,7 +7,7 @@ class ReservationFormScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
-            <Text>reservation form screen</Text>            
+              <Text>reservation form screen</Text>            
             </View>
             
           );

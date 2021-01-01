@@ -8,7 +8,7 @@ class CarDetailScreen extends React.Component{
         return (
             <View style={styles.container}>
             <Text>Car details screen</Text>    
-            <Button title="go to reservation form" onPress={()=> this.props.navigation.navigate("ReservationFormScreen")}/>        
+              <Button title="go to reservation form" onPress={()=> this.props.navigation.navigate("ReservationFormScreen")}/>        
             </View>
             
           );
