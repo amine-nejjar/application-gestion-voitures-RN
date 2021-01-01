@@ -21,7 +21,7 @@ const Agences = [
 
  
 class HomeScreen extends React.Component{
-    constructor(){
+    constructor(){ 
         super();
     }
     render(){

@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet , Dimensions , Image } from 'react-native'
 const { width, height } = Dimensions.get('window');
- import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default carsListDetails= (props) => {
         return(
