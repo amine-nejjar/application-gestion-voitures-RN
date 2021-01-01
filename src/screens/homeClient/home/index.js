@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 
 function HomeStack(){
     return(
-        <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName="Authentication">
+        <Stack.Navigator screenOptions={{ headerShown:false }} initialRouteName="Authentication">
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="ReservationFormScreen" component={ReservationFormScreen} />
             <Stack.Screen name="CarDetailSreen" component={CarDetailSreen} />
