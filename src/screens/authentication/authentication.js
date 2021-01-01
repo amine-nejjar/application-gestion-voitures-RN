@@ -9,7 +9,7 @@ class AuthenticationScreen extends React.Component{
         this.state={isLoading:false}
     }
     navigatetoRegister= () => {
-        this.props.navigation.navigate("RegisterScreen")
+        this.props.navigation.navigate("RegisterTypeScreen")
     }
     logIn = ()=> {
         this.props.navigation.navigate("HomeTabs")
