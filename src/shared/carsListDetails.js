@@ -28,7 +28,7 @@ export default carsListDetails= (props) => {
 }
 const styles = StyleSheet.create({
     ShadowStyle: {    
-        elevation: 11,
+        elevation: 5,
         backgroundColor: 'white',
         borderRadius : 10 , 
  
