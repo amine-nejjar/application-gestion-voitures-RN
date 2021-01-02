@@ -42,7 +42,7 @@ class HomeScreen extends React.Component{
                     <FlatList
                         data={ListVoiture}
                         showsVerticalScrollIndicator={false}
-                        keyExtractor={(item, index) => item.id}
+                        keyExtractor={(item, index) => item.id.toString()}
                         renderItem={
                             ({ item, index }) => {                     
                                 return (
