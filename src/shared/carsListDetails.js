@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet , Dimensions , Image } from 'react-native'
 const { width, height } = Dimensions.get('window');
+import ReserveButton from './reserveButton'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default carsListDetails= (props) => {
@@ -17,9 +18,7 @@ export default carsListDetails= (props) => {
                         <Text style={styles.TextStyleGrey}>   .{props.infoVoiture.Kilometrage} km</Text>
                     </View>
                     
-                    <TouchableOpacity style={styles.ButtonStyle} onPress={()=> props.navigation.navigate("ReservationFormScreen")}>
-                        <Text style={{ color : 'green', marginHorizontal: 5}}>Reserver</Text>
-                    </TouchableOpacity>
+                    <ReserveButton />
             
                         
                 </View>              
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
         borderColor : 'green' , 
         borderWidth : 1 , 
         borderRadius : 5 ,
-         padding : 5 
+        padding : 5 
     },
     container1: {
         flexDirection : 'row',

@@ -35,7 +35,7 @@ class HomeScreen extends React.Component{
                             title="Filtrer" 
                             type='clear' 
                             titleStyle={{ color : 'green'}}
-                            onPress={()=> this.props.navigation.navigate("ReservationFormScreen")}
+                            onPress={()=> this.props.navigation.navigate("CarDetailScreen")}
                         />        
                     </View>
           
