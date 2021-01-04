@@ -28,7 +28,7 @@ class CarDetailScreen extends React.Component{
                 <ImageBackground style={styles.top} resizeMode='cover' source={require('../../../../assets/carimages/clio3.jpg')}>
                     <View style={styles.insideBackground}>
                         <View style={styles.topActions}>
-                            <TouchableOpacity onPress={()=>console.log(this.props.navigation.goBack())}>
+                            <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
                                 <Text style={styles.backButtonStyle}> &#60; List des voitures</Text>
                             </TouchableOpacity>
                             <ReserveButton />
