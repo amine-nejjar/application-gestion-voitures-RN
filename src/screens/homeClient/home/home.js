@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     container: {    
         flex: 1,
         paddingHorizontal:"3%",
-        backgroundColor:'#f8f8f8'
+        backgroundColor:'#f8f8f8',
     },
     topView: {    
       flex:1,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
      },
      listView:{
         flex:3,
-        marginTop:"8%"
+        marginTop:"8%",
      },
     actionsView: {
         flexDirection : 'row',

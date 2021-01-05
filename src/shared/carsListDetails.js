@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         borderRadius : 10 , 
         elevation:3,
         width:"98%",
-        alignSelf:'center'
+        alignSelf:'center',
         
     },
     TextStyleBlack: {
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
         paddingHorizontal : 10, 
         paddingBottom : 10,
         justifyContent : 'space-between', 
-     
       },
 });
  
