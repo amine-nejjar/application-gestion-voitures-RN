@@ -1,9 +1,9 @@
 import React from 'react'
 import {TouchableOpacity, Text, StyleSheet} from 'react-native'
 
-export default function reserveButton(){
+export default function reserveButton(props){
     return(
-        <TouchableOpacity style={styles.ButtonStyle} onPress={()=> console.log("pressed")}>
+        <TouchableOpacity style={styles.ButtonStyle} onPress={props.action}>
             <Text style={{ color : 'green', marginHorizontal: 5}}>Reserver</Text>
         </TouchableOpacity>
     )

@@ -4,7 +4,6 @@ import AuthenticationScreen from './authentication'
 import RegisterClientScreen from './registerClient'
 import RegisterAgenceScreen from './registerAgence'
 import RegisterTypeScreen from './registerType'
-
 const Stack = createStackNavigator();
 
 function AuthenticationStack(){
