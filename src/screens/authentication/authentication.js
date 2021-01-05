@@ -1,33 +1,40 @@
 import React from 'react'
-import {View,Text,StyleSheet,ImageBackground,Image,Button,TouchableOpacity} from 'react-native'
+import {View,Text,StyleSheet,ImageBackground,Image,TouchableOpacity, KeyboardAvoidingView, ScrollView} from 'react-native'
+import {Button} from 'react-native-elements'
 import {Input} from 'react-native-elements'
-
+import * as firebase from 'firebase'
 
 class AuthenticationScreen extends React.Component{
     constructor(){
         super()
-        this.state={isLoading:false}
+        this.state={isLoading:false,email:"",password:"",errorMessage:""}
     }
     navigatetoRegister= () => {
         this.props.navigation.navigate("RegisterTypeScreen")
     }
     logIn = ()=> {
-        this.props.navigation.navigate("HomeTabs")
+        this.setState({isLoading:true})
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {this.setState({isLoading:false});this.props.navigation.navigate('Loading')})
+        .catch(error => this.setState({ errorMessage: error.message,isLoading:false }))
     }
     render(){
         return (
             <View style={styles.container}>
-                    <ImageBackground style={styles.top} imageStyle={styles.ImageBackgroundStyle} source={require('../../../assets/carsBackground.jpg')}>
-                        <View style={styles.insideBackground}>
-                            <Image source={require('../../../assets/logo.png')} style={styles.imageStyle} />
-                            <Text style={styles.titleStyle}>Bienvenu dans l'application RentaCar</Text>
-                        </View>
-                    </ImageBackground>
+                <ImageBackground style={styles.top} imageStyle={styles.ImageBackgroundStyle} source={require('../../../assets/carsBackground.jpg')}>
+                    <View style={styles.insideBackground}>
+                        <Image source={require('../../../assets/logo.png')} style={styles.imageStyle} />
+                        <Text style={styles.titleStyle}>Bienvenu dans l'application RentaCar</Text>
+                    </View>
+                </ImageBackground>
                 <View style={styles.inputs}>
                     <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer</Text>
-                    <Input style={styles.textInput} placeholder="entrez votre email" />
-                    <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true}/>
-                    <Button title="Login" color="#039b4f" onPress={()=> this.logIn()}/>
+                    <Input style={styles.textInput} placeholder="entrez votre email" onChangeText={(txt)=>this.setState({email:txt})}/>
+                    <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true} onChangeText={(txt)=>this.setState({password:txt})} />
+                    <Button loading={this.state.isLoading} title="Login" color="#039b4f" onPress={()=> this.logIn()}/>
+                    <Text style={styles.errorStyle}>{this.state.errorMessage}</Text>
                 </View>   
                 <View style={styles.bottom}>
                     <Text style={{color:"#c6c6c6"}}>Pas de compte ?</Text>
@@ -84,6 +91,11 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:20,
         paddingLeft:6
+    },
+    errorStyle:{
+        color:'#D43',
+        alignSelf:'center',
+        textAlign:'center'
     }
 });
 export default AuthenticationScreen

@@ -1,13 +1,74 @@
 import React from 'react'
-import {View,Text,StyleSheet,ImageBackground,Image,Button,TouchableOpacity} from 'react-native'
-import {Input} from 'react-native-elements'
-
+import {View,Text,StyleSheet,ImageBackground,Image,Alert,TouchableOpacity} from 'react-native'
+import {Input, Button} from 'react-native-elements'
+import * as firebase from 'firebase'
 class RegisterAgenceScreen extends React.Component{
+    constructor(){
+        super()
+        this.state={nom:"",email:"",password:"",nameErr:"",emailErr:"",passwordErr:"",firebaseErr:"",loading:false}
+    }
   navigatetoLogin = () => {
     this.props.navigation.navigate("AuthenticationScreen")
   }
   register = () => {
-    this.props.navigation.navigate("HomeTabs")
+    this.setState({loading:true})
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(
+        (user)=>{
+               if(user){
+                 user.updateProfile({
+                    displayName: this.state.nom
+                 }).then(
+                   (s)=> console.log("success")
+                 )
+               }
+           }
+
+        )
+      .catch(error => this.setState({ errorMessage: error.message }))
+    //   this.setState({loading:false})
+    //   Alert.alert(
+    //       "Succes",
+    //       "Votre compte à été crée, veuillez se connecter pour continuer",
+    //       [
+    //         {
+    //           text: "Se connecter",
+    //           onPress: () => this.props.navigation.navigate("AuthenticationScreen")
+    //         },
+    //       ],
+    //       { cancelable: false }
+    //     )
+  }
+  validate=() => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var valid=1;
+    // validation du champ nom
+    if(this.state.nom==""){
+        this.setState({nameErr:"champ obligatoire"})
+        valid=0
+      }else{this.setState({nameErr:""})}
+    // validation du champ email
+    if(this.state.email==""){
+        this.setState({emailErr:"champ obligatoire"})
+        valid=0
+      }else if(reg.test(this.state.email)==false){
+        this.setState({emailErr:"email non valide"})
+        valid=0
+      }else{this.setState({emailErr:""})}
+    // validation du champ password
+    if(this.state.password==""){
+        this.setState({passwordErr:"champ obligatoire"})
+        valid=0
+      }else if(this.state.password.length<6){
+        this.setState({passwordErr:"le mot de passe doit contenir au moins 6 caractères"})
+        valid=0
+      }else{this.setState({passwordErr:""})}
+      if(valid==1){
+        this.setState({firebaseErr:""})
+        this.register()
+      }
   }
   render(){
     return (
@@ -20,10 +81,11 @@ class RegisterAgenceScreen extends React.Component{
                 </ImageBackground>
             <View style={styles.inputs}>
                 <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer(Client)</Text>
-                <Input style={styles.textInput} placeholder="Nom complet" />
-                <Input style={styles.textInput} placeholder="entrez votre email" />
-                <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true}/>
-                <Button title="Créer un compte" color="#039b4f" onPress={()=> this.register()}/>
+                <Input style={styles.textInput} errorMessage={this.state.nameErr} placeholder="Nom complet" onChangeText={(txt)=> this.setState({nom:txt})}/>
+                <Input style={styles.textInput} errorMessage={this.state.emailErr} placeholder="entrez votre email" onChangeText={(txt)=> this.setState({email:txt})}/>
+                <Input style={styles.textInput} errorMessage={this.state.passwordErr} placeholder="mot de passe" secureTextEntry={true} onChangeText={(txt)=> this.setState({password:txt})}/>
+                <Button title="Créer un compte" onPress={()=> this.validate()} loading={this.state.loading}/>
+                <Text style={styles.errorStyle}>{this.state.firebaseErr}</Text>
             </View>   
             <View style={styles.bottom}>
                 <Text style={{color:"#c6c6c6"}}>Vous possedez déja un compte ?</Text>
@@ -79,6 +141,10 @@ class RegisterAgenceScreen extends React.Component{
           fontWeight:'bold',
           fontSize:20,
           paddingLeft:6
+      },
+      errorStyle:{
+          color:'#D43',
+          alignSelf:'center'
       }
   });
 export default RegisterAgenceScreen

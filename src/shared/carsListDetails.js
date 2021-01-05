@@ -3,8 +3,12 @@ import {View, Text, StyleSheet , Dimensions , Image,ImageBackground } from 'reac
 const { width, height } = Dimensions.get('window');
 import ReserveButton from './reserveButton'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import ReservationFormScreen from '../screens/homeClient/home/reservationForm';
 
-export default carsListDetails= (props) => {
+export default function carsListDetails(props){
+        const goToDetail=()=> {
+            props.navigation.navigate('CarDetailScreen')
+        }
         return(
             <View style={styles.ShadowStyle}>
                 <ImageBackground               
@@ -18,7 +22,7 @@ export default carsListDetails= (props) => {
                         <Text style={styles.TextStyleGrey}>   .{props.infoVoiture.Kilometrage} km</Text>
                     </View>
                     
-                    <ReserveButton />
+                    <ReserveButton action={goToDetail}/>
             
                         
                 </View>              

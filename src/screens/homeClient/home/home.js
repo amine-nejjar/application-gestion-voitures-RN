@@ -3,6 +3,7 @@ import {View, Text, StyleSheet ,Image , Dimensions ,FlatList } from 'react-nativ
 import {Button} from 'react-native-elements'
 import CarsListDetails from './../../../shared/carsListDetails';
 import {Picker} from '@react-native-picker/picker';
+import * as firebase from 'firebase'
 
 const { width, height } = Dimensions.get('window');
 
@@ -25,7 +26,22 @@ const Agences = [
 class HomeScreen extends React.Component{
     constructor(){ 
         super();
-        this.state={agence:"ahlam"}
+        this.state={Loading:false,agence:"ahlam"}
+    }
+    refreshList = () => {
+        this.setState({Loading:true})
+        setTimeout(()=> {
+            this.setState({Loading:false})
+        } 
+            ,1000)
+    }
+    signOutUser = async () => {
+        try {
+            await firebase.auth().signOut();
+            navigate('Loading');
+        } catch (e) {
+            console.log(e);
+        }
     }
     render(){
         return (
@@ -35,10 +51,10 @@ class HomeScreen extends React.Component{
                     <View style={styles.actionsView}>
                         <Text style={styles.TextStyle}>Voitures disponibles</Text>
                         <Button 
-                            title="Filtrer" 
+                            title="Logout" 
                             type='clear' 
                             titleStyle={{ color : 'green'}}
-                            onPress={()=> this.props.navigation.navigate("CarDetailScreen")}
+                            onPress={this.signOutUser}
                         />        
                     </View>
                     <View style={styles.pickerStyle}>
@@ -46,8 +62,12 @@ class HomeScreen extends React.Component{
                         selectedValue={this.state.agence}
                         style={{height: 50, width: "100%"}}
                         
-                        onValueChange={(itemValue, itemIndex) =>
+                        onValueChange={(itemValue, itemIndex) =>{
                             this.setState({agence: itemValue})
+                            this.refreshList()
+                        }
+                            
+                        
                         }>
                         <Picker.Item label="Agence Ahlan de location (6)" value="ahlam" />
                         <Picker.Item label="Agence Alwafaa (5)" value="alwafaa" />
@@ -58,7 +78,10 @@ class HomeScreen extends React.Component{
                 </View>
                 <View style={styles.listView}>
                     <FlatList
-                            data={ListVoiture}     
+                            data={ListVoiture}
+                            extraData={this.state.agence}     
+                            refreshing={this.state.Loading}
+                            onRefresh={this.refreshList}
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => item.id.toString()}
                             renderItem={
