@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet , Dimensions , Image } from 'react-native'
+import {View, Text, StyleSheet , Dimensions , Image,ImageBackground } from 'react-native'
 const { width, height } = Dimensions.get('window');
 import ReserveButton from './reserveButton'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -7,10 +7,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default carsListDetails= (props) => {
         return(
             <View style={styles.ShadowStyle}>
-                <Image               
+                <ImageBackground               
                     source={require('./../../assets/carsBackground.jpg')} 
-                    style={{  width: width * 0.9  , height: width * 0.4 , borderTopLeftRadius : 10 , borderTopRightRadius : 10  }} 
-                />
+                    style={{  width: "100%" , height: width * 0.32, borderTopRightRadius:10,borderTopLeftRadius:10,overflow:'hidden',elevation:3 }} 
+                ></ImageBackground>
                 <Text style={styles.TextStyleBlack}>Clio 4 grise</Text>
                 <View style={styles.container1}>
                     <View  style={{  flexDirection : 'row' }}>
@@ -26,11 +26,13 @@ export default carsListDetails= (props) => {
      )
 }
 const styles = StyleSheet.create({
-    ShadowStyle: {    
-        elevation: 5,
+    ShadowStyle: {   
         backgroundColor: 'white',
         borderRadius : 10 , 
- 
+        elevation:3,
+        width:"98%",
+        alignSelf:'center'
+        
     },
     TextStyleBlack: {
         color : 'black',
