@@ -13,12 +13,12 @@ function HomeTabs() {
             <Icon name="home" type="antdesign" color={color} size={size} />
           )
         }}/>
-      <Tab.Screen name="ProfileStack" component={ProfileStack} options={{tabBarLabel: 'accueil',tabBarIcon: ({ color, size }) => (
-            <Icon name="user" type="antdesign" color={color} size={size} />
+        <Tab.Screen name="ReservationStack" component={ReservationStack} options={{tabBarLabel: 'reservations',tabBarIcon: ({ color, size }) => (
+            <Icon name="calendar" type="antdesign" color={color} size={size} />
           )
         }}/>
-      <Tab.Screen name="ReservationStack" component={ReservationStack} options={{tabBarLabel: 'profile',tabBarIcon: ({ color, size }) => (
-            <Icon name="calendar" type="antdesign" color={color} size={size} />
+      <Tab.Screen name="ProfileStack" component={ProfileStack} options={{tabBarLabel: 'profile',tabBarIcon: ({ color, size }) => (
+            <Icon name="user" type="antdesign" color={color} size={size} />
           )
         }}/>
     </Tab.Navigator>

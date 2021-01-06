@@ -15,31 +15,14 @@ class RegisterAgenceScreen extends React.Component{
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(
-        (user)=>{
-               if(user){
-                 user.updateProfile({
-                    displayName: this.state.nom
-                 }).then(
-                   (s)=> console.log("success")
-                 )
-               }
-           }
-
+      .then(authenticate=>{
+        return authenticate.user
+        .updateProfile({
+         displayName: "testName"
+        }) }
         )
       .catch(error => this.setState({ errorMessage: error.message }))
-    //   this.setState({loading:false})
-    //   Alert.alert(
-    //       "Succes",
-    //       "Votre compte à été crée, veuillez se connecter pour continuer",
-    //       [
-    //         {
-    //           text: "Se connecter",
-    //           onPress: () => this.props.navigation.navigate("AuthenticationScreen")
-    //         },
-    //       ],
-    //       { cancelable: false }
-    //     )
+  
   }
   validate=() => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

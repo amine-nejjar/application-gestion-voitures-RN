@@ -44,6 +44,7 @@ class HomeScreen extends React.Component{
         }
     }
     render(){
+        console.log(firebase.auth().currentUser)
         return (
             <View style={styles.container}>
                 <View style={styles.topView}>
