@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet ,Image , Dimensions ,FlatList } from 'react-native'
 import {Button} from 'react-native-elements'
-import CarsListDetails from './../../../shared/carsListDetails';
+import CarsListDetails from '../../../shared/carsListDetails';
 import {Picker} from '@react-native-picker/picker';
 import * as firebase from 'firebase'
 
@@ -44,7 +44,6 @@ class HomeScreen extends React.Component{
         }
     }
     render(){
-        console.log(firebase.auth().currentUser)
         return (
             <View style={styles.container}>
                 <View style={styles.topView}>
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     container: {    
         flex: 1,
         paddingHorizontal:"3%",
-        backgroundColor:'#f8f8f8',
+        backgroundColor:'#fff',
     },
     topView: {    
       flex:1,

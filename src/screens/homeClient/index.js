@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Icon} from 'react-native-elements'
-import HomeStack from './home'
+import HomeStack from './cars'
 import ProfileStack from './profile'
 import ReservationStack from './reservations'
 const Tab = createBottomTabNavigator();
