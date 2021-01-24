@@ -11,14 +11,14 @@ export default function carsListDetails(props){
         return(
             <View style={styles.ShadowStyle}>
                 <ImageBackground               
-                    source={require('./../../assets/carsBackground.jpg')} 
+                    source={{uri:props.infoVoiture.image}} 
                     style={{  width: "100%" , height: width * 0.32, borderTopRightRadius:10,borderTopLeftRadius:10,overflow:'hidden',elevation:3 }} 
                 ></ImageBackground>
-                <Text style={styles.TextStyleBlack}>Clio 4 grise</Text>
+                <Text style={styles.TextStyleBlack}>{props.infoVoiture.nom} {props.infoVoiture.color}</Text>
                 <View style={styles.container1}>
                     <View  style={{  flexDirection : 'row' }}>
-                        <Text style={styles.TextStyleGrey}>{props.infoVoiture.Label}</Text>
-                        <Text style={styles.TextStyleGrey}>   .{props.infoVoiture.Kilometrage} km</Text>
+                        <Text style={styles.TextStyleGrey}>{props.infoVoiture.type}</Text>
+                        <Text style={styles.TextStyleGrey}>   .{props.infoVoiture.km} km</Text>
                     </View>
                     
                     <ReserveButton action={goToDetail}/>

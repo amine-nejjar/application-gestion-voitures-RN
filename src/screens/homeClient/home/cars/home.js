@@ -4,6 +4,7 @@ import {Button} from 'react-native-elements'
 import CarsListDetails from '../../../../shared/carsListDetails';
 import {Picker} from '@react-native-picker/picker';
 import Header from '../../../../shared/header'
+import * as firebase from 'firebase'
 const { width, height } = Dimensions.get('window');
 
 const ListVoiture = [
@@ -25,7 +26,7 @@ const Agences = [
 class HomeScreen extends React.Component{
     constructor(){ 
         super();
-        this.state={Loading:false,agence:"ahlam"}
+        this.state={Loading:false,agence:"ahlam",cars:[]}
     }
     refreshList = () => {
         this.setState({Loading:true})
@@ -33,6 +34,23 @@ class HomeScreen extends React.Component{
             this.setState({Loading:false})
         } 
             ,1000)
+    }
+    getCars = () => {
+        this.setState({isLoading:true})
+        firebase.database().ref('/cars').on('value', doc => {
+            var carArray = [];
+            doc.forEach(function(snap) {
+                var item = snap.val();
+                item.key = snap.key;
+
+                carArray.push(item);
+            });
+            console.log('ok')
+            this.setState({cars:carArray,isLoading:false})
+        })
+    }
+    componentDidMount(){
+        this.getCars()
     }
     render(){
         return (
@@ -45,6 +63,7 @@ class HomeScreen extends React.Component{
                             title="filter" 
                             type='clear' 
                             titleStyle={{ color : 'green'}}
+                            onPress={()=> console.log(this.state.cars)}
                         />        
                     </View>
                     <View style={styles.pickerStyle}>
@@ -68,12 +87,12 @@ class HomeScreen extends React.Component{
                 </View>
                 <View style={styles.listView}>
                     <FlatList
-                            data={ListVoiture}
+                            data={this.state.cars}
                             extraData={this.state.agence}     
                             refreshing={this.state.Loading}
-                            onRefresh={this.refreshList}
+                            onRefresh={this.getCars}
                             showsVerticalScrollIndicator={false}
-                            keyExtractor={(item, index) => item.id.toString()}
+                            keyExtractor={(item, index) => index.toString()}
                             renderItem={
                                 ({ item, index }) => {                     
                                     return (
@@ -120,7 +139,7 @@ const styles = StyleSheet.create({
     pickerStyle:{
         backgroundColor:'#fff',
         borderRadius:4,
-        elevation:2
+        elevation:6
     }
 
 });

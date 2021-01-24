@@ -1,9 +1,10 @@
 import React from 'react'
 import { createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem } from '@react-navigation/drawer';
 import { CommonActions } from '@react-navigation/native';
-import {Alert} from 'react-native'
+import {Alert,View,Text,Image,Dimensions} from 'react-native'
 import HomeTabs from './home'
 import * as firebase from 'firebase'
+const { width, height } = Dimensions.get('window');
 
 
 const Drawer = createDrawerNavigator();
@@ -20,6 +21,10 @@ async function signOutUser(){
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
+      <View style={{height: 80,alignItems:'center', justifyContent: 'center'}}>
+      <Image resizeMode='contain' source={require('../../../assets/logo.png')} style={{height:"80%" }} />
+
+      </View>
       <DrawerItemList {...props} />
       <DrawerItem label="Se déconnecter" onPress={() =>
         Alert.alert(

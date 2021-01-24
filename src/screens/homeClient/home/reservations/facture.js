@@ -1,5 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
+import Header from '../../../../shared/header'
+
 class FactureScreen extends React.Component{
     constructor(){
         super();
@@ -7,6 +9,7 @@ class FactureScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
+            <Header navigation={this.props.navigation} title="factures"  />
             <Text>facture screen</Text>            
             </View>
             
@@ -17,7 +20,6 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent:'center',
     backgroundColor:'#fff'
     },
 

@@ -3,6 +3,7 @@ import { Button } from 'react-native-elements';
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground,Image, FlatList} from 'react-native'
 import {Overlay} from 'react-native-elements'
 import ReserveButton from '../../../../shared/reserveButton'
+import Header from '../../../../shared/header'
 
 const carImages=["https://i.ibb.co/SyPLGkW/clio1.png","https://i.ibb.co/rvxf4BZ/clio2.jpg","https://i.ibb.co/K7J3jbM/clio3.jpg","https://i.ibb.co/6nywbgr/clio4.jpg"]
 const carReviews=["Trés bonne voiture","Voiture en bonne etat","je n'ai aucun regret","Pas mal !!","Consomme beaucoup"]
@@ -25,12 +26,10 @@ class CarDetailScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
+                <Header navigation={this.props.navigation} title="Clio 4 Diesel" />
                 <ImageBackground style={styles.top} resizeMode='cover' source={require('../../../../../assets/carimages/clio3.jpg')}>
                     <View style={styles.insideBackground}>
                         <View style={styles.topActions}>
-                            <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
-                                <Text style={styles.backButtonStyle}> &#60; List des voitures</Text>
-                            </TouchableOpacity>
                             <ReserveButton />
                         </View>
                         <View style={styles.topEmpty}></View>
