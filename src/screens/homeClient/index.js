@@ -1,27 +1,49 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Icon} from 'react-native-elements'
-import HomeStack from './cars'
-import ProfileStack from './profile'
-import ReservationStack from './reservations'
-const Tab = createBottomTabNavigator();
+import React from 'react'
+import { createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem } from '@react-navigation/drawer';
+import { CommonActions } from '@react-navigation/native';
+import {Alert} from 'react-native'
+import HomeTabs from './home'
+import * as firebase from 'firebase'
 
-function HomeTabs() {
+
+const Drawer = createDrawerNavigator();
+
+async function signOutUser(){
+  try {
+      await firebase.auth().signOut();
+      navigate('Loading');
+  } catch (e) {
+      console.log(e);
+  }
+}
+
+function CustomDrawerContent(props) {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarLabel: 'accueil',tabBarIcon: ({ color, size }) => (
-            <Icon name="home" type="antdesign" color={color} size={size} />
-          )
-        }}/>
-        <Tab.Screen name="ReservationStack" component={ReservationStack} options={{tabBarLabel: 'reservations',tabBarIcon: ({ color, size }) => (
-            <Icon name="calendar" type="antdesign" color={color} size={size} />
-          )
-        }}/>
-      <Tab.Screen name="ProfileStack" component={ProfileStack} options={{tabBarLabel: 'profile',tabBarIcon: ({ color, size }) => (
-            <Icon name="user" type="antdesign" color={color} size={size} />
-          )
-        }}/>
-    </Tab.Navigator>
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label="Se déconnecter" onPress={() =>
+        Alert.alert(
+          'Déconnexion',
+          'êtes-vous sûr de vouloir vous déconnecter ?',
+          [
+          {
+              text: 'Annuler',
+              style: 'cancel'
+            },
+            { text: 'déconnexion', onPress: signOutUser}
+          ],
+          { cancelable: false }
+        )
+      } />
+    </DrawerContentScrollView>
   );
 }
-export default HomeTabs
+
+
+export default function HomeDrawer() {
+  return (
+      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+        <Drawer.Screen name="HomeTabs" component={HomeTabs} options={{title:'Accueil'}}/>
+      </Drawer.Navigator>
+  );
+}

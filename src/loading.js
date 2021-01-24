@@ -10,7 +10,7 @@ export default class Loading extends React.Component{
             this.props.navigation.dispatch(CommonActions.reset({
                   index: 1,
                   routes: [
-                    { name: user ? 'HomeTabs' : 'AuthenticationStack' }
+                    { name: user ? 'HomeDrawer' : 'AuthenticationStack' }
                   ],
                 })
               );

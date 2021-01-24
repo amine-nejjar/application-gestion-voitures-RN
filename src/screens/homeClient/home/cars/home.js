@@ -1,10 +1,9 @@
 import React from 'react'
 import {View, Text, StyleSheet ,Image , Dimensions ,FlatList } from 'react-native'
 import {Button} from 'react-native-elements'
-import CarsListDetails from '../../../shared/carsListDetails';
+import CarsListDetails from '../../../../shared/carsListDetails';
 import {Picker} from '@react-native-picker/picker';
-import * as firebase from 'firebase'
-
+import Header from '../../../../shared/header'
 const { width, height } = Dimensions.get('window');
 
 const ListVoiture = [
@@ -35,26 +34,17 @@ class HomeScreen extends React.Component{
         } 
             ,1000)
     }
-    signOutUser = async () => {
-        try {
-            await firebase.auth().signOut();
-            navigate('Loading');
-        } catch (e) {
-            console.log(e);
-        }
-    }
     render(){
         return (
             <View style={styles.container}>
+                <Header navigation={this.props.navigation} title="accueil" type="main"/>
                 <View style={styles.topView}>
-                    <Image resizeMode='contain' source={require('./../../../../assets/logo.png')} style={{ width: width * 0.3, height: width * 0.12, }} />
                     <View style={styles.actionsView}>
                         <Text style={styles.TextStyle}>Voitures disponibles</Text>
                         <Button 
-                            title="Logout" 
+                            title="filter" 
                             type='clear' 
                             titleStyle={{ color : 'green'}}
-                            onPress={this.signOutUser}
                         />        
                     </View>
                     <View style={styles.pickerStyle}>
@@ -104,16 +94,16 @@ class HomeScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {    
         flex: 1,
-        paddingHorizontal:"3%",
         backgroundColor:'#fff',
     },
     topView: {    
       flex:1,
-      marginTop : width * 0.1 , 
+      paddingHorizontal:'3%'
      },
      listView:{
-        flex:3,
+        flex:4,
         marginTop:"8%",
+        paddingHorizontal:'3%'
      },
     actionsView: {
         flexDirection : 'row',

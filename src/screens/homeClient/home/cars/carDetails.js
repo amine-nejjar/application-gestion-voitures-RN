@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-native-elements';
 import {View, Text, StyleSheet, TouchableOpacity, ImageBackground,Image, FlatList} from 'react-native'
 import {Overlay} from 'react-native-elements'
-import ReserveButton from '../../../shared/reserveButton'
+import ReserveButton from '../../../../shared/reserveButton'
 
 const carImages=["https://i.ibb.co/SyPLGkW/clio1.png","https://i.ibb.co/rvxf4BZ/clio2.jpg","https://i.ibb.co/K7J3jbM/clio3.jpg","https://i.ibb.co/6nywbgr/clio4.jpg"]
 const carReviews=["Trés bonne voiture","Voiture en bonne etat","je n'ai aucun regret","Pas mal !!","Consomme beaucoup"]
@@ -25,7 +25,7 @@ class CarDetailScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
-                <ImageBackground style={styles.top} resizeMode='cover' source={require('../../../../assets/carimages/clio3.jpg')}>
+                <ImageBackground style={styles.top} resizeMode='cover' source={require('../../../../../assets/carimages/clio3.jpg')}>
                     <View style={styles.insideBackground}>
                         <View style={styles.topActions}>
                             <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
@@ -63,7 +63,7 @@ class CarDetailScreen extends React.Component{
                             return(
                                 <View style={styles.reviewContainer}>
                                     <View style={styles.reviewAvatarContainer}>
-                                        <Image style={{width:"80%"}} resizeMode='contain' source={require('../../../../assets/avatar2.png')}/>
+                                        <Image style={{width:"80%"}} resizeMode='contain' source={require('../../../../../assets/avatar2.png')}/>
                                     </View>
                                     <View style={styles.reviewTextContainer}>
                                         <Text style={styles.reviewText}>{item}</Text>

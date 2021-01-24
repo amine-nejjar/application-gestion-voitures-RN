@@ -15,7 +15,7 @@ class ProfileScreen extends React.Component{
                 </View> 
                 <View style={styles.TopViewContainer}> 
                     <View style={styles.TopView}> 
-                      <Image   source={require('./../../../../assets/avatar.png')} style={{ flex : 1 , width : undefined , height : undefined, borderRadius : 100 ,  backgroundColor : 'red',    }} /> 
+                      <Image   source={require('./../../../../../assets/avatar.png')} style={{ flex : 1 , width : undefined , height : undefined, borderRadius : 100 ,  backgroundColor : 'red',    }} /> 
                       <View style={styles.TopViewRow}>
                         <View style={{ alignSelf :'flex-end' }}>
                             <Text>edit</Text>
