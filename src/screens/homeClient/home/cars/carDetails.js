@@ -24,24 +24,25 @@ class CarDetailScreen extends React.Component{
     }
 
     render(){
+        let car = this.props.route.params.car
         return (
             <View style={styles.container}>
-                <Header navigation={this.props.navigation} title="Clio 4 Diesel" />
-                <ImageBackground style={styles.top} resizeMode='cover' source={require('../../../../../assets/carimages/clio3.jpg')}>
+                <Header navigation={this.props.navigation} title={car.nom} />
+                <ImageBackground style={styles.top} resizeMode='cover' source={{uri:car.image}}>
                     <View style={styles.insideBackground}>
                         <View style={styles.topActions}>
                             <ReserveButton />
                         </View>
                         <View style={styles.topEmpty}></View>
                         <View style={styles.topInfo}>
-                            <Text style={styles.topInfoText}>Clio 4 Diesel</Text>
-                            <Text style={styles.topInfoText}>Prix : 250DH/jour</Text>
+                            <Text style={styles.topInfoText}>{car.nom+" "+car.type}</Text>
+                            <Text style={styles.topInfoText}>Prix : {car.prix}dh/jour</Text>
                         </View>
                     </View>
                 </ImageBackground>
                 <View style={styles.middle}>
                     <FlatList 
-                        data={carImages}
+                        data={Object.values(car.photos)}
                         horizontal={true}
                         keyExtractor={(item,index)=> index.toString()}
                         renderItem={({item})=> {

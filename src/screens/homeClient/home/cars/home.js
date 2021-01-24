@@ -42,10 +42,8 @@ class HomeScreen extends React.Component{
             doc.forEach(function(snap) {
                 var item = snap.val();
                 item.key = snap.key;
-
                 carArray.push(item);
             });
-            console.log('ok')
             this.setState({cars:carArray,isLoading:false})
         })
     }

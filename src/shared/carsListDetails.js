@@ -5,8 +5,8 @@ import ReserveButton from './reserveButton'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function carsListDetails(props){
-        const goToDetail=()=> {
-            props.navigation.navigate('CarDetailScreen')
+        const goToDetail=(car)=> {
+            props.navigation.navigate('CarDetailScreen',{car:car})
         }
         return(
             <View style={styles.ShadowStyle}>
@@ -21,7 +21,7 @@ export default function carsListDetails(props){
                         <Text style={styles.TextStyleGrey}>   .{props.infoVoiture.km} km</Text>
                     </View>
                     
-                    <ReserveButton action={goToDetail}/>
+                    <ReserveButton action={()=> goToDetail(props.infoVoiture)}/>
             
                         
                 </View>              
