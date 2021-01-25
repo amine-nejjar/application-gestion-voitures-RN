@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthenticationStack from './screens/authentication'
 import HomeDrawer from './screens/homeClient'
+import HomeAgence from './screens/homeAgence/home'
 import Loading from './loading'
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ class MyNavigator extends React.Component{
                     <Stack.Screen name="Loading" component={Loading}/>    
                     <Stack.Screen name="AuthenticationStack" component={AuthenticationStack}/>
                     <Stack.Screen name="HomeDrawer" component={HomeDrawer}/>
+                    <Stack.Screen name="HomeAgence" component={HomeAgence}/>
                 </Stack.Navigator>
             </NavigationContainer>
         )

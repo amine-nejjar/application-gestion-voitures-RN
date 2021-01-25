@@ -33,7 +33,7 @@ class AuthenticationScreen extends React.Component{
                     <Text style={{color:"#494c4f",fontSize:12}}>Entrer vos informations pour continuer</Text>
                     <Input style={styles.textInput} placeholder="entrez votre email" onChangeText={(txt)=>this.setState({email:txt})}/>
                     <Input style={styles.textInput} placeholder="mot de passe" secureTextEntry={true} onChangeText={(txt)=>this.setState({password:txt})} />
-                    <Button loading={this.state.isLoading} title="Login" color="#039b4f" onPress={()=> this.logIn()}/>
+                    <Button loading={this.state.isLoading} title="Login" buttonStyle={{backgroundColor:'#039b4f'}} onPress={()=> this.logIn()}/>
                     <Text style={styles.errorStyle}>{this.state.errorMessage}</Text>
                 </View>   
                 <View style={styles.bottom}>

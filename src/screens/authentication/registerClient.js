@@ -2,7 +2,7 @@ import React from 'react'
 import {View,Text,StyleSheet,ImageBackground,Image,Alert,TouchableOpacity} from 'react-native'
 import {Input, Button} from 'react-native-elements'
 import * as firebase from 'firebase'
-class RegisterAgenceScreen extends React.Component{
+class RegisterClientScreen extends React.Component{
     constructor(){
         super()
         this.state={nom:"",email:"",password:"",nameErr:"",emailErr:"",passwordErr:"",firebaseErr:"",loading:false}
@@ -18,8 +18,13 @@ class RegisterAgenceScreen extends React.Component{
       .then(authenticate=>{
         return authenticate.user
         .updateProfile({
-         displayName: "testName"
-        }) }
+         displayName: "client"
+        }).then(function() {
+          console.log(user.displayName);
+        })
+      .catch(function(error) {
+          // an error occured
+        }); }
         )
       .catch(error => this.setState({ errorMessage: error.message }))
   
@@ -67,7 +72,7 @@ class RegisterAgenceScreen extends React.Component{
                 <Input style={styles.textInput} errorMessage={this.state.nameErr} placeholder="Nom complet" onChangeText={(txt)=> this.setState({nom:txt})}/>
                 <Input style={styles.textInput} errorMessage={this.state.emailErr} placeholder="entrez votre email" onChangeText={(txt)=> this.setState({email:txt})}/>
                 <Input style={styles.textInput} errorMessage={this.state.passwordErr} placeholder="mot de passe" secureTextEntry={true} onChangeText={(txt)=> this.setState({password:txt})}/>
-                <Button title="Créer un compte" onPress={()=> this.validate()} loading={this.state.loading}/>
+                <Button title="Créer un compte" buttonStyle={{backgroundColor:'#039b4f'}} onPress={()=> this.validate()} loading={this.state.loading}/>
                 <Text style={styles.errorStyle}>{this.state.firebaseErr}</Text>
             </View>   
             <View style={styles.bottom}>
@@ -130,4 +135,4 @@ class RegisterAgenceScreen extends React.Component{
           alignSelf:'center'
       }
   });
-export default RegisterAgenceScreen
+export default RegisterClientScreen

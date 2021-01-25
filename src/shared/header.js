@@ -22,7 +22,7 @@ export default function HeaderComponent(props){
 const styles= StyleSheet.create({
     container:{
         height:"10%",
-        backgroundColor:'#04e8b2',
+        backgroundColor:'#0ad86e',
         alignItems:'flex-end',
         flexDirection:'row',
         elevation:3,
