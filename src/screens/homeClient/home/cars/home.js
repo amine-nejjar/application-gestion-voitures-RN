@@ -6,27 +6,11 @@ import {Picker} from '@react-native-picker/picker';
 import Header from '../../../../shared/header'
 import * as firebase from 'firebase'
 const { width, height } = Dimensions.get('window');
-
-const ListVoiture = [
-   { id : 1 , Label : 'Clio' , Kilometrage : '152348' },
-   { id :  2, Label : 'Clio' , Kilometrage : '152348' },
-   { id : 3 , Label : 'Clio' , Kilometrage : '152348' },
-   { id : 4 , Label : 'Clio' , Kilometrage : '152348' },
-   { id : 5 , Label : 'Clio' , Kilometrage : '152348' },
-   { id : 6 , Label : 'Clio' , Kilometrage : '152348' },
-]
-
-const Agences = [
-    { id : 1 , Agence : 'Ahlam Rent '  },
-    { id : 2 , Agence : 'Ahlam Rent '  },
-    { id : 3 , Agence : 'Ahlam Rent '  },
- ]
-
  
 class HomeScreen extends React.Component{
     constructor(){ 
         super();
-        this.state={Loading:false,agence:"ahlam",cars:[]}
+        this.state={Loading:false,agence:"tout",cars:[],agences:[]}
     }
     refreshList = () => {
         this.setState({Loading:true})
@@ -47,8 +31,28 @@ class HomeScreen extends React.Component{
             this.setState({cars:carArray,isLoading:false})
         })
     }
+    // getcarAgence = (key) => {
+    //     this.setState({isLoading:true})
+    //     const ref = firebase.database.child('agences')
+    //     const query = ref.orderByChild('key').equalTo(key)
+    //     query.on('value', doc => {
+
+    //     })
+    // }
+    getAgences = () => {
+        firebase.database().ref('/agences').on('value', doc =>{
+            var agences= [];
+            doc.forEach(function(snap) {
+                var item = snap.val();
+                item.key = snap.key;
+                agences.push(item);
+            })
+            this.setState({agences:agences})
+        } )
+    }
     componentDidMount(){
         this.getCars()
+        this.getAgences()
     }
     render(){
         return (
@@ -76,9 +80,11 @@ class HomeScreen extends React.Component{
                             
                         
                         }>
-                        <Picker.Item label="Agence Ahlan de location (6)" value="ahlam" />
+                        <Picker.Item label="tout" value="tout" />
+                        {this.state.agences.map(agence =><Picker.Item key={agence.key} label={agence.nom} value={agence.key} /> )}
+                        {/* <Picker.Item label="Agence Ahlan de location (6)" value="ahlam" />
                         <Picker.Item label="Agence Alwafaa (5)" value="alwafaa" />
-                        <Picker.Item label="Agence Agdal location (5)" value="agadl" />
+                        <Picker.Item label="Agence Agdal location (5)" value="agadl" /> */}
                         </Picker>
                     </View>
                     

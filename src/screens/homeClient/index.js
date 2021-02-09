@@ -3,6 +3,7 @@ import { createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem
 import { CommonActions } from '@react-navigation/native';
 import {Alert,View,Text,Image,Dimensions} from 'react-native'
 import HomeTabs from './home'
+import HelpStack from './help'
 import * as firebase from 'firebase'
 const { width, height } = Dimensions.get('window');
 
@@ -49,6 +50,7 @@ export default function HomeDrawer() {
   return (
       <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="HomeTabs" component={HomeTabs} options={{title:'Accueil'}}/>
+        <Drawer.Screen name="HelpStack" component={HelpStack} options={{title:'Help'}}/>
       </Drawer.Navigator>
   );
 }

@@ -22,6 +22,9 @@ class CarDetailScreen extends React.Component{
             </Overlay>
         )
     }
+    action = (car) => {
+        this.props.navigation.navigate("ReservationFormScreen",{car:car})
+    }
 
     render(){
         let car = this.props.route.params.car
@@ -31,7 +34,7 @@ class CarDetailScreen extends React.Component{
                 <ImageBackground style={styles.top} resizeMode='cover' source={{uri:car.image}}>
                     <View style={styles.insideBackground}>
                         <View style={styles.topActions}>
-                            <ReserveButton />
+                            <ReserveButton action={()=>this.action(car)} />
                         </View>
                         <View style={styles.topEmpty}></View>
                         <View style={styles.topInfo}>

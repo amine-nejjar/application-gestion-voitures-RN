@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, StyleSheet, Button} from 'react-native'
 import Header from '../../shared/header'
 import * as firebase from 'firebase'
+
 class HomeAgenceScreen extends React.Component{
     constructor(){
         super();
@@ -19,7 +20,7 @@ class HomeAgenceScreen extends React.Component{
             <View style={styles.container}>
             <Header navigation={this.props.navigation} title="accueil agence" />
             <Text>Home Agence</Text>
-            <Button title="se déconnecter" onPress={this.logOut}/>        
+            <Button title="se déconnecter" onPress={this.logOut}/>     
             </View>
             
           );
