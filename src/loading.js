@@ -9,7 +9,7 @@ export default class Loading extends React.Component{
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
             let routeName="AuthenticationStack"
-            if(user!=null) routeName = user.displayName=="client" ? "HomeDrawer" : "HomeAgence"
+            if(user!=null) routeName = user.displayName=="client" ? "HomeDrawer" : "HomeAgenceDrawer"
             this.props.navigation.dispatch(CommonActions.reset({
                   index: 1,
                   routes: [
