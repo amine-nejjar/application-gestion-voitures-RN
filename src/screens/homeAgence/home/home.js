@@ -11,8 +11,7 @@ class home extends React.Component{
         super();
         const user = firebase.auth().currentUser;
         this.state={Loading:false,agence: user.displayName ,cars:[]}
-        console.log(user.displayName);
-    }
+     }
     refreshList = () => {
         this.setState({Loading:true})
         setTimeout(()=> {
@@ -20,14 +19,19 @@ class home extends React.Component{
         } 
             ,1000)
     }
-    getCars = () => {
+     getCars = () => {
+         
         this.setState({isLoading:true})
         firebase.database().ref('/cars').on('value', doc => {
             var carArray = [];
             doc.forEach(function(snap) {
                 var item = snap.val();
                 item.key = snap.key;
-                carArray.push(item);
+                console.log(item.key);
+                console.log(firebase.auth().currentUser)
+                if(item.key === firebase.auth().currentUser.uid){
+                    carArray.push(item);
+                }
             });
             this.setState({cars:carArray,isLoading:false})
         })
@@ -48,7 +52,6 @@ class home extends React.Component{
             <View style={styles.container}>
             <Header navigation={this.props.navigation} title="accueil agence" type='main'/>
                 <View style={styles.container2}>
-                   <Button title="se déconnecter" onPress={this.logOut}/>    
                     <Button 
                         title="Proposer une Voiture" 
                         type='outline' 

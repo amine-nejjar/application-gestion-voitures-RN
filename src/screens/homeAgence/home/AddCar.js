@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet , TouchableOpacity , Image , Alert} from 'react-native'
+import {View, Text, StyleSheet , TouchableOpacity , Image , Alert , ActivityIndicator } from 'react-native'
 import Header from '../../../shared/header'
 import * as firebase from 'firebase'
 import {Button} from 'react-native-elements'
@@ -12,13 +12,16 @@ class AddCar extends React.Component{
     constructor(){ 
         super();
         const user = firebase.auth().currentUser;
-        this.state={nom:"",email:"",prix:"",type:"",km:"",couleur:"", user :user.uid , url : ''}
+        this.state={nom:"",email:"",prix:"",type:"",km:"",couleur:"", user :user.uid , url : '', loading: false}
          console.log(this.state.user)
         
     }
     
     onChooseImagePress = async (key) => {
 
+        this.setState({
+            loading : true ,
+        });
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -28,7 +31,7 @@ class AddCar extends React.Component{
 
             this.uploadImage(result.uri,key)
                 .then(() => {
-                    Alert.alert("Successfully uploaded");
+                    //Alert.alert("Successfully uploaded");
                 }).then(() => {
                    return firebase.storage().ref().child(key).getDownloadURL(); 
                 }).then(downloadURL => {
@@ -36,6 +39,7 @@ class AddCar extends React.Component{
                    this.setState({
                       url : downloadURL ,
                       avatar : result.uri,
+                      loading : false ,
                    });
             
                 }).catch((error) => {
@@ -66,6 +70,7 @@ class AddCar extends React.Component{
         );
         console.log(pushedRef.key);
         var pushedRef = firebase.database().ref().child('cars').child(pushedRef.key).child('photos').push( this.state.url);
+        this.props.navigation.navigate("home");
     }
     render(){
         return (
@@ -75,14 +80,19 @@ class AddCar extends React.Component{
                     <View style={{  alignItems: 'center', width: "100%",justifyContent: 'center' }} >
                         <TouchableOpacity style={styles.avatarPlaceholder} onPress={() => { this.onChooseImagePress(firebase.auth().currentUser.uid);}} >
                             <Image source={{ uri: this.state.avatar }} style={styles.avatar}/>
+                            {
+                                this.state.loading==true ? 
+                                <ActivityIndicator size="small" color="white" /> : 
                                 <MaterialIcons name="add-a-photo" size={30} color="white" />
+                            }
+                                
                         </TouchableOpacity>
                     </View> 
                     <View style={styles.container2}>
                         <Input style={styles.textInput} placeholder="Nom de voiture" onChangeText={(txt)=>this.setState({nom:txt})}/>
-                        <Input style={styles.textInput} placeholder="Prix de location" onChangeText={(txt)=>this.setState({prix:txt})}/>
+                        <Input style={styles.textInput} placeholder="Prix de location" keyboardType='numeric' onChangeText={(txt)=>this.setState({prix:txt})}/>
                         <Input style={styles.textInput} placeholder="Type de voiture" onChangeText={(txt)=>this.setState({type:txt})}/>
-                        <Input style={styles.textInput} placeholder="Kilometrage" onChangeText={(txt)=>this.setState({km:txt})}/>
+                        <Input style={styles.textInput} placeholder="Kilometrage" keyboardType='numeric' onChangeText={(txt)=>this.setState({km:txt})}/>
                         <Input style={styles.textInput} placeholder="Couleur" onChangeText={(txt)=>this.setState({couleur:txt})}/>
                         
                         <Button 
